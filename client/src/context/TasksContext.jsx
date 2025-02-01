@@ -36,15 +36,20 @@ const getTasks = async () => {
 
  const deleteTask = async (id) =>{
 
-    try{
-           const res = await deleteTasksRequest(id);
-           if (res === 204) setTasks(tasks.filter(tasks) => task._id !== id ));
-
-    }catch (error){
+    try {
+        const res = await deleteTasksRequest (id);
+        if(res.status === 204) setTasks(tasks.filter((task) => task._id !== id))
+        
+    } catch (error) {
         console.log(error)
+        
     }
 
- }
+ };
+ 
+
+
+
 
 return(
     <TaskContext.Provider value={{tasks, createTask, getTasks,
