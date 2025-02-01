@@ -13,8 +13,8 @@ const router = Router();
 router.get('/task', authRequired, getTasks);
 router.get('/task/:id', authRequired, getTask);
 router.post('/task', authRequired, validateSchema( createTasksSchema), createTasks  );
-router.delete('/task/:id', authRequired, upadateTasks );
-router.put('/task/:id', authRequired, deleteTasks );
+router.delete('/task/:id', authRequired,deleteTasks  );
+router.put('/task/:id', authRequired, upadateTasks );
 
 
 export default router;
