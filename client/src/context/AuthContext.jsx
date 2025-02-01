@@ -82,9 +82,16 @@ useEffect(() => {
 checkLogin();
 }, []);
 
+const logout = () => {
+    Cookies.remove("token");
+    setUser(null);
+    setIsAuthenticated(false);
+  };
+
+
 
     return (
-        <AuthContext.Provider value={{signup, loading, user, isAuthenticated, errors, signin}}>    
+        <AuthContext.Provider value={{signup, loading, user, isAuthenticated, errors, signin, logout}}>    
             {children}
         </AuthContext.Provider>
     )

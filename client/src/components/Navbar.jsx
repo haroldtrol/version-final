@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 
 function Navbar(){
-const {isAuthenticated} = useAuth()
+const {isAuthenticated , logout} = useAuth()
 
     return(
     <nav className="bg-gray-800 p-4">
@@ -12,7 +12,7 @@ const {isAuthenticated} = useAuth()
           {isAuthenticated ?  (
             <>
           <Link to = "/add-task" className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">agregar tareas</Link>
-          <Link to = "/add-task" className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">cerrar sesion</Link>
+          <Link to = "/login" onClick={() => {logout();}} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">cerrar sesion</Link>
            </>
           ) : (
 
