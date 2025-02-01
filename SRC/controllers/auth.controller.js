@@ -4,8 +4,6 @@ import { createAccessToken } from '../libs/jws.js';
 import jwt from 'jsonwebtoken';
 import   {token_secret } from '../config.js'; 
 
-import e from 'express';
-import { token_secret } from '../config.js';
 
 export const register = async (req, res) => {
 
