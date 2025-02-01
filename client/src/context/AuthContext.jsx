@@ -3,6 +3,7 @@ import  {registerRequest, loginRequest, verityTokenRequest} from '../api/auth.js
 import Cookies from 'js-cookie';
 
 
+
 const AuthContext = createContext()
 
 export const useAuth = () => {
@@ -19,6 +20,7 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [errors, setErrors] = useState( []);
+    const [loading, setLoading] = useState (true)
 
     const signup = async (user) => {
         try {
@@ -42,24 +44,50 @@ export const AuthProvider = ({children}) => {
 }
 
 useEffect(() => { 
-    const cookies = Cookies.get();
+    async function  checkLogin  () {
 
-    if (cookies.token) {
+  const cookies = Cookies.get();
+
+    if (!cookies.token) {
+        setIsAuthenticated(false)
+        setLoading(false)
+        setUser(null)
+        return
+
+    }
+    
+
         try {
-            const res = verityTokenRequest();
+            const res = await verityTokenRequest(cookies.token);
+            console.log(res)
+            if (!res.data) {
+            setIsAuthenticated(false)
+            setLoading(false)
+            return ;
+            }
+
+            setIsAuthenticated(true)
+            setUser(res.data)
+            setLoading(false)
           
         } catch (error) {
-
+            setIsAuthenticated(false)
+            setUser(null)
+            setLoading(false)
             }
-    }
+    
 
-  }, []);
+}
+checkLogin();
+}, []);
+
+
 
 
 
 
     return (
-        <AuthContext.Provider value={{signup, user, isAuthenticated, errors, signin}}>    
+        <AuthContext.Provider value={{signup, loading, user, isAuthenticated, errors, signin}}>    
             {children}
         </AuthContext.Provider>
     )
