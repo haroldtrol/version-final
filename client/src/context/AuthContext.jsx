@@ -74,6 +74,7 @@ useEffect(() => {
             setIsAuthenticated(false)
             setUser(null)
             setLoading(false)
+            console.log(error)
             }
     
 
@@ -82,13 +83,10 @@ checkLogin();
 }, []);
 
 
-
-
-
-
     return (
         <AuthContext.Provider value={{signup, loading, user, isAuthenticated, errors, signin}}>    
             {children}
         </AuthContext.Provider>
     )
 }
+

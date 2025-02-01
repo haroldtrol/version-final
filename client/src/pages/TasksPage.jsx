@@ -1,11 +1,16 @@
-function  TasksPage() {
+import { useEffect } from "react";
+import { useTasks } from "../context/TasksContext";
 
+
+
+function  TasksPage() {
+const { getTasks } = useTasks();
+
+useEffect(() => {
+getTasks()
+},[])
   
-  return (
-    <div>
-      <h1>Tasks Page</h1>
-    </div>
-  );
+  return <div>taskSchema</div>
 }
 
 export default TasksPage;

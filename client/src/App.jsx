@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
+import {AuthProvider}  from "./context/AuthContext.jsx"
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from "./pages/RegisterPage.jsx"
 import TaskFormPage from "./pages/TaskFormPage.jsx"
@@ -7,13 +7,16 @@ import TasksPage from "./pages/TasksPage.jsx"
 import HomePage from "./pages/HomePage.jsx"
 import ProfilePage from "./pages/ProfilePage.jsx"
 import ProtectedRoute from "./ProtectedRoute.jsx"
-import { AuthProvider } from "./context/AuthContext.jsx"
+import {TaskProvider} from "./context/TasksContext.jsx"
 
 function App() {
   return (
     <AuthProvider>
-    <BrowserRouter>
-      <Routes>
+          <TaskProvider>
+     <BrowserRouter>
+
+      <Routes> 
+
         <Route path="/" element={<HomePage/>} />
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<RegisterPage/>} />
@@ -25,9 +28,9 @@ function App() {
         <Route path="/profile" element={<ProfilePage/>} />
         </Route>
 
-
       </Routes>
     </BrowserRouter>
+    </TaskProvider>
     </AuthProvider>
   )
 }
