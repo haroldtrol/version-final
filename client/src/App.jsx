@@ -8,12 +8,15 @@ import HomePage from "./pages/HomePage.jsx"
 import ProfilePage from "./pages/ProfilePage.jsx"
 import ProtectedRoute from "./ProtectedRoute.jsx"
 import {TaskProvider} from "./context/TasksContext.jsx"
+import Navbar from "./components/Navbar.jsx"
 
 function App() {
   return (
     <AuthProvider>
           <TaskProvider>
      <BrowserRouter>
+
+    <Navbar/>
 
       <Routes> 
 
