@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useTasks } from "../context/TasksContext";
+import {Link} from 'react-router-dom'
 
 
 
@@ -27,7 +28,7 @@ if (tasks.length === 0 ) return (<h1> nop task</h1>)
            deleteTask(task._id)
             }}> Eliminar</button>
             
-            <button> Actualizar</button>
+            <Link to = { `/task/${task._id}`}> Actualizar</Link>
           </div>
              </header>
           <p className=" text-slate-300">{task.description}</p>
